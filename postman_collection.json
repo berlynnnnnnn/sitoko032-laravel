@@ -1,0 +1,280 @@
+{
+  "info": {
+    "_postman_id": "500e7536-022c-4be7-b0ca-1c55c499f792",
+    "name": "SiToko-032 REST API (UTS Internet Programming)",
+    "description": "Koleksi Postman REST API Proyek UTS Internet Programming.\nMahasiswa: Berlynda Vanetta (25.K1.0032)\nStudi Kasus: SiToko - Toko Online Sederhana (SiToko-032)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost/sitoko-032/api",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "sitoko032_admintoken_berlynda_2026",
+      "type": "string"
+    },
+    {
+      "key": "kasir_token",
+      "value": "sitoko032_kasirtoken_demo_2026",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Identitas Mahasiswa (Wajib)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/identitas",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "identitas"
+          ]
+        },
+        "description": "Mengembalikan identitas mahasiswa pembuat sistem (NIM, Nama, Foto, Aplikasi)."
+      },
+      "response": []
+    },
+    {
+      "name": "2. Autentikasi Login (Dapatkan Token)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"25.K1.0032\",\n  \"password\": \"admin123\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "login"
+          ]
+        },
+        "description": "Login akun untuk mendapatkan auth_token (Bearer token) tersimpan di database."
+      },
+      "response": []
+    },
+    {
+      "name": "3. GET Daftar Seluruh Produk (Search & Pagination)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/produk?search=laptop&limit=5&page=1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "produk"
+          ],
+          "query": [
+            {
+              "key": "search",
+              "value": "laptop",
+              "description": "Kata kunci pencarian nama atau kode produk"
+            },
+            {
+              "key": "limit",
+              "value": "5",
+              "description": "Batas jumlah data per halaman"
+            },
+            {
+              "key": "page",
+              "value": "1",
+              "description": "Nomor halaman"
+            }
+          ]
+        },
+        "description": "Mengambil daftar seluruh produk dari tabel t032_produk dengan relasi t032_kategori."
+      },
+      "response": []
+    },
+    {
+      "name": "4. GET Detail 1 Produk",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/produk/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "produk",
+            "1"
+          ]
+        },
+        "description": "Mengambil detail lengkap 1 produk berdasarkan id_produk."
+      },
+      "response": []
+    },
+    {
+      "name": "5. POST Tambah Produk Baru (Admin / Kasir)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id_kategori\": 1,\n  \"kode_produk\": \"PRD-032-999\",\n  \"nama_produk\": \"Monitor LED UltraWide 29 Inch\",\n  \"harga\": 2850000,\n  \"stok\": 7,\n  \"deskripsi\": \"Monitor IPS 100Hz 99% sRGB dengan port HDMI & DisplayPort.\",\n  \"gambar\": \"uploads/produk/default.png\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/produk",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "produk"
+          ]
+        },
+        "description": "Menambahkan data produk baru ke tabel t032_produk. Hanya dapat diakses oleh Admin & Kasir."
+      },
+      "response": []
+    },
+    {
+      "name": "6. PUT Ubah Data Produk (Admin / Kasir)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nama_produk\": \"Laptop Ultrabook Pro 14 (Edisi Khusus UTS 2026)\",\n  \"harga\": 12900000,\n  \"stok\": 12,\n  \"deskripsi\": \"Spesifikasi diupgrade dengan RAM 32GB Dual Channel dan SSD 1TB.\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/produk/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "produk",
+            "1"
+          ]
+        },
+        "description": "Mengubah informasi harga, stok, nama, atau kategori dari produk tertentu."
+      },
+      "response": []
+    },
+    {
+      "name": "7. DELETE Hapus Produk (HANYA Admin)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{admin_token}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/produk/12",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "produk",
+            "12"
+          ]
+        },
+        "description": "Menghapus produk dari sistem. Hak akses dibatasi hanya untuk Super Administrator."
+      },
+      "response": []
+    },
+    {
+      "name": "8. DELETE Uji Proteksi Role (Kasir Ditolak 403 Forbidden)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{kasir_token}}"
+          },
+          {
+            "key": "Accept",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/produk/1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "produk",
+            "1"
+          ]
+        },
+        "description": "Pengujian Role Guard API: Membuktikan bahwa Kasir mendapatkan respon 403 Forbidden saat mencoba menghapus produk."
+      },
+      "response": []
+    }
+  ]
+}

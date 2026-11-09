@@ -1,0 +1,173 @@
+/*
+ * Custom CSS SiToko-032
+ * Tema Oranye (#FB8C00)
+ * Mahasiswa: Berlynda Vanetta (25.K1.0032)
+ */
+
+:root {
+    --primary-orange: #FB8C00;
+    --primary-orange-hover: #F57C00;
+    --primary-orange-dark: #E65100;
+    --primary-orange-light: #FFF3E0;
+    --primary-orange-border: #FFB74D;
+}
+
+body {
+    background-color: #F8F9FA;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+main.main-content {
+    flex: 1 0 auto;
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+}
+
+/* Navbar Oranye */
+.navbar-custom {
+    background-color: var(--primary-orange) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.navbar-custom .navbar-brand {
+    color: #FFFFFF !important;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-custom .nav-link {
+    color: rgba(255, 255, 255, 0.92) !important;
+    font-weight: 500;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+.navbar-custom .nav-link:hover,
+.navbar-custom .nav-link.active {
+    color: #FFFFFF !important;
+    background-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Tombol Utama (btn-primary override to Orange) */
+.btn-primary {
+    background-color: var(--primary-orange) !important;
+    border-color: var(--primary-orange) !important;
+    color: #FFFFFF !important;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--primary-orange-hover) !important;
+    border-color: var(--primary-orange-dark) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 10px rgba(251, 140, 0, 0.35);
+}
+
+.btn-outline-primary {
+    color: var(--primary-orange) !important;
+    border-color: var(--primary-orange) !important;
+    font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-orange) !important;
+    color: #FFFFFF !important;
+}
+
+/* Header Tabel Warna Oranye */
+.table thead,
+.table-orange-header thead {
+    background-color: var(--primary-orange) !important;
+    color: #FFFFFF !important;
+}
+
+.table thead th {
+    background-color: var(--primary-orange) !important;
+    color: #FFFFFF !important;
+    border-color: var(--primary-orange-border) !important;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+/* Badge Role */
+.badge-role-admin {
+    background-color: #E65100;
+    color: #FFFFFF;
+}
+
+.badge-role-kasir {
+    background-color: #0288D1;
+    color: #FFFFFF;
+}
+
+.badge-role-pelanggan {
+    background-color: #43A047;
+    color: #FFFFFF;
+}
+
+/* Pagination Custom */
+.page-item.active .page-link {
+    background-color: var(--primary-orange) !important;
+    border-color: var(--primary-orange) !important;
+    color: #FFFFFF !important;
+}
+
+.page-link {
+    color: var(--primary-orange);
+}
+
+.page-link:hover {
+    color: var(--primary-orange-dark);
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.card-header-orange {
+    background-color: var(--primary-orange);
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+/* Footer Styling */
+footer.app-footer {
+    background-color: #FFFFFF;
+    border-top: 1px solid #E0E0E0;
+    padding: 1rem 0;
+    flex-shrink: 0;
+    font-size: 0.95rem;
+    color: #555555;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.footer-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-orange);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.user-avatar-nav {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #FFFFFF;
+}
